@@ -11,13 +11,13 @@ class Network
     @shows << show
   end
 
-  # def main_characters
-  #   @shows.map do |show|
-  #     show.characters.find_all do |actor|
-  #       characters.salary > 500_000
-  #     end
-  #   end
-  # end
+  def main_characters
+    @shows.map do |show|
+      show.characters.find_all do |character|
+        character.salary > 500_000 && character.name == character.name.upcase
+      end.flatten
+    end
+  end
 
   def actors_by_show
     by_show = {}
@@ -28,11 +28,17 @@ class Network
   end
 
   def shows_by_actor
-    by_actor = {}
-    @shows.each do |show|
-      by_actor[show.characters.actor] = show
+    all_actors = shows.map do |show|
+      show.characters.map do |character|
+        character.actor
+      end
+    end.flatten.uniq
+
+    shows_hash = {}
+    all_actors.each do |actor|
+      shows_hash[actor] = shows
     end
-    by_actor
+    shows_hash
   end
 
 end

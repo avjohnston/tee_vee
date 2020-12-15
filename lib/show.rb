@@ -26,6 +26,6 @@ class Show
     @characters.map do |character|
       character.actor
     end
-  end 
+  end
 
 end
