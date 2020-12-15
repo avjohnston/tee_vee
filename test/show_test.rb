@@ -40,5 +40,4 @@ class ShowTest < MiniTest::Test
     knight_rider = Show.new("Knight Rider", "Glen Larson", [michael_knight, kitt])
     assert_equal ["David Hasselhoff", "William Daniels"], knight_rider.actors
   end
-
 end
